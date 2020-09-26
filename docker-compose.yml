@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  server:
+    container_name: farm-grocery-server
+    command: npm run dev
+    restart: always
+    volumes:
+      - .:/usr/app/server
+    environment:
+      NODE_ENV: development
+    ports:
+      - '4000:4000'
+    tty: true
+    build: .
+    depends_on:
+      - database
+
+  database:
+    container_name: farm-grocery-database
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "webapp"
+    ports:
+      - "15432:5432"
+    volumes:
+      - .docker/postgres/data:/var/lib/postgresql/data 
+    networks:
+      - postgres-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "phcgaia11@yahoo.com.br"
+      PGADMIN_DEFAULT_PASSWORD: "webapp"
+    ports:
+      - "16543:80"
+    depends_on:
+      - database
+    networks:
+      - postgres-network
+
+networks:
+  postgres-network:
+    driver: bridge
