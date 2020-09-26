@@ -7,11 +7,11 @@ dotenv.config({
 
 module.exports = {
   development: {
-    client: 'pg',
+    client: process.env.DB_CONNECTION,
     connection: {
-      database: "",
-      user: "",
-      password: ""
+      database: process.env.DB_DATABASE,
+      user: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD
     },
     migrations: {
       tableName: 'knex_migrations',
