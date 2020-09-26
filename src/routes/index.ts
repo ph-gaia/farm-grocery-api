@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
 
+import userRoutes from '../routes/user';
+
 const router = express.Router();
 
 router.get(
@@ -10,5 +12,6 @@ router.get(
     }),
 );
 
+router.use('/users', userRoutes);
 
 export default router;
