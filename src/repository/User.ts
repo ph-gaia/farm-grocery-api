@@ -2,7 +2,7 @@ import User from '../models/User'
 
 const read = async () => {
   try {
-    return await User.query();
+    return User.query();
   } catch (err) {
     throw err;
   }
@@ -36,7 +36,7 @@ const update = async (id: string, data: User) => {
 
 const remove = async (id: string) => {
   try {
-    return await User.query().deleteById(id);
+    return User.query().deleteById(id);
   } catch (err) {
     throw err;
   }

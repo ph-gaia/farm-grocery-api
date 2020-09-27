@@ -20,6 +20,8 @@ services:
     container_name: farm-grocery-database
     image: postgres
     environment:
+      POSTGRES_DB: "farm_grocery"
+      POSTGRES_USER: "webapp"
       POSTGRES_PASSWORD: "webapp"
     ports:
       - "15432:5432"
