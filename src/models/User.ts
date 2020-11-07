@@ -23,7 +23,7 @@ class User extends Model {
       name: { type: 'string', minLength: 3, maxLength: 90 },
       email: { type: 'string', minLength: 10, maxLength: 90 },
       phone: { type: 'string', minLength: 9, maxLength: 20 },
-      type: { type: 'string', minLength: 9, maxLength: 20, enum: ["USER", "SELLER"] }
+      type: { type: 'string', minLength: 4, maxLength: 20, enum: ["USER", "SELLER"] }
     }
   }
 
