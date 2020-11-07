@@ -6,11 +6,10 @@ import UserRepository from '../repository/User';
 const create = async (req: Request, res: Response, next: NextFunction): Promise<Response | undefined> => {
   try {
     const { body } = req;
-    const { id } = await UserRepository.create(body);
+    const user = await UserRepository.create(body);
 
-    return res.status(201).send({
-      id,
-    });
+    return res.status(201).send({ user });
+
   } catch (err) {
     handleControllerError(err, next);
   }
@@ -20,9 +19,8 @@ const read = async (_req: Request, res: Response, next: NextFunction): Promise<R
   try {
     const users = await UserRepository.read();
 
-    return res.status(200).send({
-      users,
-    });
+    return res.status(200).send({ users });
+
   } catch (err) {
     handleControllerError(err, next);
   }
@@ -38,9 +36,8 @@ const readOne = async (req: Request, res: Response, next: NextFunction): Promise
       return res.status(404).send({ error: 'User not found.' });
     }
 
-    return res.status(200).send({
-      user,
-    });
+    return res.status(200).send({ user });
+
   } catch (err) {
     handleControllerError(err, next);
   }
@@ -57,6 +54,7 @@ const update = async (req: Request, res: Response, next: NextFunction): Promise<
     }
 
     return res.status(200).send({ user });
+
   } catch (err) {
     handleControllerError(err, next);
   }
@@ -72,7 +70,8 @@ const remove = async (req: Request, res: Response, next: NextFunction): Promise<
       return res.status(404).send({ error: 'User not found.' });
     }
 
-    return res.status(200).send({ user });
+    return res.status(204).send({ user });
+
   } catch (err) {
     handleControllerError(err, next);
   }
